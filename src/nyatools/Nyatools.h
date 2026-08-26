@@ -1,15 +1,16 @@
 #pragma once
 
+#include "ll/api/event/EventBus.h"
 #include "ll/api/mod/NativeMod.h"
 
-namespace my_mod {
+namespace nya_tools {
 
-class MyMod {
+class NyaTools {
 
 public:
-    static MyMod& getInstance();
+    static NyaTools& getInstance();
 
-    MyMod() : mSelf(*ll::mod::NativeMod::current()) {}
+    NyaTools() : mSelf(*ll::mod::NativeMod::current()) {}
 
     [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
@@ -22,6 +23,7 @@ public:
     /// @return True if the mod is disabled successfully.
     bool disable();
 
+    std::string getVersion();
     // TODO: Implement this method if you need to unload the mod.
     // /// @return True if the mod is unloaded successfully.
     // bool unload();
@@ -30,4 +32,4 @@ private:
     ll::mod::NativeMod& mSelf;
 };
 
-} // namespace my_mod
+} // namespace nya_tools

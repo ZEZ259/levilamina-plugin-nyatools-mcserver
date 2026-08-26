@@ -1,11 +1,11 @@
 {
   "format_version": 3,
-  "format_uuid": "289f771f-2c9a-4d73-9f3f-8492495a924d",
-  "tooth": "github.com/LiteLDev/levilamina-mod-template",
-  "version": "0.0.0",
+  "format_uuid": "55222c52-88c6-4449-bff5-3b40686a81e4",
+  "tooth": "github.com/ZEZ259/levilamina-plugin-pigmanfix-mcserver",
+  "version": "0.0.1",
   "info": {
-    "name": "My Mod",
-    "description": "Description of my mod",
+    "name": "NyaTools",
+    "description": "修改基岩版僵尸猪人传送延迟。",
     "tags": [
       "platform:levilamina",
       "type:mod"
@@ -17,7 +17,7 @@
       "label": "",
       "platform": "win-x64",
       "dependencies": {
-        "github.com/LiteLDev/LeviLamina": "26.20.*"
+        "github.com/LiteLDev/LeviLamina": "1.9.*"
       },
       "assets": [
         {
@@ -28,8 +28,8 @@
           "placements": [
             {
               "type": "dir",
-              "src": "my-mod/",
-              "dest": "plugins/my-mod/"
+              "src": "levilamina-plugin-pigmanfix-mcserver/",
+              "dest": "plugins/levilamina-plugin-pigmanfix-mcserver/"
             }
           ]
         }
@@ -51,7 +51,7 @@
       "label": "client",
       "platform": "win-x64",
       "dependencies": {
-        "github.com/LiteLDev/LeviLamina#client": "26.20.*"
+        "github.com/LiteLDev/LeviLamina#client": "1.8.*"
       },
       "assets": [
         {

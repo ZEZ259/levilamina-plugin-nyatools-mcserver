@@ -1,6 +1,6 @@
-# LeviLamina Mod Template
+# NyaTools
 
-Mod Template for LeviLamina
+NyaTools是一个为LeviLamina平台开发的Minecraft服务器插件，提供了一些实用的功能和优化。
 
 ## Usage
 
@@ -23,4 +23,4 @@ PRs accepted.
 
 ## License
 
-CC0-1.0 © LeviMC(LiteLDev)
+See ./LICENSE
