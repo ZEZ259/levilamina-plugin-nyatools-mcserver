@@ -4,7 +4,7 @@
 
 namespace nya_tools::events::listeners
 {
-   ll::event::ListenerPtr listenerActorSpawn; 
+   //ll::event::ListenerPtr listenerActorSpawn; 
 
    void registerListenerActorSpawn(bool bl,Config& config);
 }
