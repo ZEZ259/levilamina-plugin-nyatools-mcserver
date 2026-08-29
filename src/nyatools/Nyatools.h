@@ -2,6 +2,7 @@
 
 #include "ll/api/event/EventBus.h"
 #include "ll/api/mod/NativeMod.h"
+#include "Config.h"
 
 namespace nya_tools {
 
@@ -24,6 +25,7 @@ public:
     bool disable();
 
     std::string getVersion();
+    Config config;
     // TODO: Implement this method if you need to unload the mod.
     // /// @return True if the mod is unloaded successfully.
     // bool unload();

@@ -39,5 +39,23 @@ namespace nya_tools::command
                     output.success("已恢复僵尸猪人传送CD。");
                 }
             });
+        commandMcrules.runtimeOverload()
+            .text("DisablePhantomSpawn")
+            .required("isEnable", ll::command::ParamKind::Bool)
+            .execute([&config](CommandOrigin const& origin, CommandOutput& output, ll::command::RuntimeCommand const& self)
+            {
+                //指令实现
+                //内容
+                if (self["isEnable"].get<ll::command::ParamKind::Bool>())
+                {
+                    nya_tools::mc::DisablePhantomSpawn(true, config);
+                    output.success("已禁用幻翼生成。");
+                }
+                else 
+                {
+                    nya_tools::mc::DisablePhantomSpawn(false, config);
+                    output.success("已恢复幻翼生成。");
+                }
+            });
     }
 }

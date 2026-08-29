@@ -1,6 +1,7 @@
 #include "Nyatools.h"
 #include "Config.h"
 #include "commands/command.h"
+#include "mc/mc.h"
 #include "nya/PauseNoPlayers.h"
 
 #include <cstddef>
@@ -47,7 +48,6 @@ namespace nya_tools
     }
     bool NyaTools::load() {
         getSelf().getLogger().debug("Loading...");
-        // Code for loading the mod goes here.
         return true;
     }
 
@@ -55,9 +55,13 @@ namespace nya_tools
     {
         //config.enablePauseGameWhenNoPlayers
         if(config.enablePauseGameWhenNoPlayers && ll::service::bedrock::getLevel()->getPlayerList().size() == 0)
-        {
             nya_tools::funcs::func1Enable();
-        }
+        //config.enableDisablePhantomSpawn
+        if(config.enableDisablePhantomSpawn)
+            nya_tools::mc::DisablePhantomSpawn(true, config);
+        //config.enableFixPigmanCD
+        if(config.enableFixPigmanCD)
+            nya_tools::mc::FixPigmanCD(true);
     }
 
     //启用模组
@@ -71,8 +75,8 @@ namespace nya_tools
         }
         
         //载入指令
-        command::registerNyarules(config);//设置模组规则
-        command::registerMcrules(config);//设置游戏规则
+        command::registerNyarules(config);  //设置模组规则
+        command::registerMcrules(config);   //设置游戏规则
         applyConfig();
         return true;
     }
@@ -90,7 +94,6 @@ namespace nya_tools
             getSelf().getLogger().error("Cannot save default configurations to {}", configFilePath);
             }
         }
-        // Code for disabling the mod goes here.
         return true;
     }
 

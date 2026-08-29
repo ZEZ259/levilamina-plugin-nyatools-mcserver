@@ -33,11 +33,13 @@ namespace nya_tools::command
                 {
                     nya_tools::funcs::func1Enable();
                     output.success("已开启服务器空闲时关闭昼夜更替。");
+                    config.enablePauseGameWhenNoPlayers = true;
                 }
                 else 
                 {
                     nya_tools::funcs::func1Disable();
                     output.success("已禁用服务器空闲时关闭昼夜更替。");
+                    config.enablePauseGameWhenNoPlayers = false;
                 }
             });
 
