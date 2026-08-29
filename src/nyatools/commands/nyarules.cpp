@@ -17,30 +17,8 @@
 
 namespace nya_tools::command
 {
-    enum nyarulesEnum
-    {
-        Unknown             = 0,                                    //未知规则
-        PauseNoPlayers      = 1,                                    //无玩家时关闭昼夜更替
-    };
-
-    nyarulesEnum getNyarulesEnumFromString(const std::string& ruleName)
-    {
-        if (ruleName == "PauseNoPlayers")
-        {
-            return PauseNoPlayers;
-        }
-        else
-        {
-            return Unknown;
-        }
-    }
-
     void registerNyarules(Config& config)
     {
-        struct commandNyarulesParams {
-            nyarulesEnum ruleName;
-            bool isEnable;
-        };
         auto& commandNyarules = ll::command::CommandRegistrar::getInstance(true)
                         .getOrCreateCommand("nyarules", "游戏规则指令", CommandPermissionLevel::Any);
         commandNyarules.runtimeOverload()

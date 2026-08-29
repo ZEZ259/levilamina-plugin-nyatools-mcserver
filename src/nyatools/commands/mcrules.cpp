@@ -17,24 +17,6 @@
 
 namespace nya_tools::command
 {
-    enum mcrulesEnum
-    {
-        Unknown             = 0,                                    //未知规则
-        FixPigmanCD         = 1,                                    //修复猪人CD
-    };
-
-    mcrulesEnum getMcrulesEnumFromString(const std::string& ruleName)
-    {
-        if (ruleName == "FixPigmanCD")
-        {
-            return FixPigmanCD;
-        }
-        else
-        {
-            return Unknown;
-        }
-    }
-
     void registerMcrules(Config& config)
     {
         auto& commandMcrules = ll::command::CommandRegistrar::getInstance(true)
