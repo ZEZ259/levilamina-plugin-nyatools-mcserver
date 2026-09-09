@@ -37,7 +37,25 @@ namespace nya_tools::events::listeners
                     NyaTools::getInstance().getSelf().getLogger().info("检测到幻翼生成，已移除。");
                 #endif
                 }
-            }    
+            }
+            //FakePeaceful:伪和平
+            if(config.enableFakePeaceful)
+            {
+                auto mob = event.mob();
+                if (mob == nullptr) 
+                {
+                    return;
+                }
+                //2086:Monster
+                if (((int)mob->getEntityTypeId() & 2086) == 2086 && mob->getEntityTypeId() != ActorType::Phantom) 
+                {
+                    mob->remove();
+
+                #ifdef MOD_DEVELOPING
+                    NyaTools::getInstance().getSelf().getLogger().info("检测到怪物生成，已移除。");
+                #endif
+                }
+            }
         });
     }
 }

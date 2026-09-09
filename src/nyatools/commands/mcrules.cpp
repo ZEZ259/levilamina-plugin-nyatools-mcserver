@@ -48,13 +48,31 @@ namespace nya_tools::command
                 //内容
                 if (self["isEnable"].get<ll::command::ParamKind::Bool>())
                 {
-                    nya_tools::mc::DisablePhantomSpawn(true, config);
+                    config.enableDisablePhantomSpawn = true;
                     output.success("已禁用幻翼生成。");
                 }
                 else 
                 {
-                    nya_tools::mc::DisablePhantomSpawn(false, config);
+                    config.enableDisablePhantomSpawn = true;
                     output.success("已恢复幻翼生成。");
+                }
+            });
+        commandMcrules.runtimeOverload()
+            .text("FakePeaceful")
+            .required("isEnable", ll::command::ParamKind::Bool)
+            .execute([&config](CommandOrigin const& origin, CommandOutput& output, ll::command::RuntimeCommand const& self)
+            {
+                //指令实现
+                //内容
+                if (self["isEnable"].get<ll::command::ParamKind::Bool>())
+                {
+                    config.enableFakePeaceful=true;
+                    output.success("已启用伪和平。");
+                }
+                else 
+                {
+                    config.enableFakePeaceful=false;
+                    output.success("已禁用伪和平。");
                 }
             });
     }

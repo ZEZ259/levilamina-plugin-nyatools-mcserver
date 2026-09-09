@@ -2,10 +2,10 @@
   "format_version": 3,
   "format_uuid": "55222c52-88c6-4449-bff5-3b40686a81e4",
   "tooth": "github.com/ZEZ259/levilamina-plugin-pigmanfix-mcserver",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "info": {
     "name": "NyaTools",
-    "description": "修改基岩版僵尸猪人传送延迟。",
+    "description": "一个用于修改基岩版游戏行为的模组。",
     "tags": [
       "platform:levilamina",
       "type:mod"

@@ -3,6 +3,7 @@
 #include "commands/command.h"
 #include "mc/mc.h"
 #include "nya/PauseNoPlayers.h"
+#include "events/listeners/listeners.h"
 
 #include <cstddef>
 #include <ll/api/mod/NativeMod.h>
@@ -56,9 +57,6 @@ namespace nya_tools
         //config.enablePauseGameWhenNoPlayers
         if(config.enablePauseGameWhenNoPlayers && ll::service::bedrock::getLevel()->getPlayerList().size() == 0)
             nya_tools::funcs::func1Enable();
-        //config.enableDisablePhantomSpawn
-        if(config.enableDisablePhantomSpawn)
-            nya_tools::mc::DisablePhantomSpawn(true, config);
         //config.enableFixPigmanCD
         if(config.enableFixPigmanCD)
             nya_tools::mc::FixPigmanCD(true);
@@ -78,6 +76,8 @@ namespace nya_tools
         command::registerNyarules(config);  //设置模组规则
         command::registerMcrules(config);   //设置游戏规则
         applyConfig();
+        //监视器
+        nya_tools::events::listeners::registerListenerActorSpawn(true,config);
         return true;
     }
 
