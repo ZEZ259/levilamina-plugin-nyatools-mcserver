@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ll/api/event/EventBus.h"
 #include "ll/api/mod/NativeMod.h"
 #include "Config.h"
 

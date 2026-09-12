@@ -1,8 +1,10 @@
+#include <string>
 #define MOD_DEVELOPING
 
 #include "../event.h"
 #include "../../config.h"
 #include "../../nyatools.h"
+#include "../../base/Utils.h"
 
 #include "ll/api/event/EventBus.h"
 #include "ll/api/event/ListenerBase.h"
@@ -19,16 +21,16 @@ namespace nya_tools::events::listeners
             bus.removeListener(listenerActorSpawn);
             return;
         }
-        listenerActorSpawn = bus.emplaceListener<ll::event::world::SpawnedMobEvent>([config](ll::event::world::SpawnedMobEvent& event)
+        listenerActorSpawn = bus.emplaceListener<ll::event::world::SpawnedMobEvent>([&config](ll::event::world::SpawnedMobEvent& event)
         {
+            auto mob = event.mob();
+            if (mob == nullptr) 
+            {
+                return;
+            }
             //DisablePhantomSpawn:禁用幻翼生成
             if(config.enableDisablePhantomSpawn)
             {
-                auto mob = event.mob();
-                if (mob == nullptr) 
-                {
-                    return;
-                }
                 if (mob->getEntityTypeId() == ActorType::Phantom) 
                 {
                     mob->remove();
@@ -38,16 +40,12 @@ namespace nya_tools::events::listeners
                 #endif
                 }
             }
+
             //FakePeaceful:伪和平
             if(config.enableFakePeaceful)
             {
-                auto mob = event.mob();
-                if (mob == nullptr) 
-                {
-                    return;
-                }
-                //2086:Monster
-                if (((int)mob->getEntityTypeId() & 2086) == 2086 && mob->getEntityTypeId() != ActorType::Phantom) 
+                //2816:Monster
+                if (isMobMonster(mob) && mob->getEntityTypeId() != ActorType::Phantom) 
                 {
                     mob->remove();
 
