@@ -1,8 +1,10 @@
-#define NYA_DEBUG
+//#define NYA_DEBUG
 #include "../Config.h"
 #include "../Nyatools.h"
 #include "../base/Utils.h"
 
+
+#include <ll/api/i18n/I18n.h>
 #include "mc/world/actor/Actor.h"
 #include "ll/api/memory/Hook.h"
 
@@ -11,6 +13,7 @@
 #include "mc/world/events/BlockEventDispatcherToken.h"
 #include <string>
 
+using namespace ll::i18n_literals;
 using namespace ll::literals::memory_literals;
 
 namespace nya_tools::hooks

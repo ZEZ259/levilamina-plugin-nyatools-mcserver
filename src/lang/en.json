@@ -1,0 +1,8 @@
+{
+    "infoMcrulesSuccess": "Successfully set {0} to {1}.",
+    "descriptionMcrule": "Game rule command",
+    "infoNyarulesSuccess": "Successfully set {0} to {1}.",
+    "descriptionNyarule": "Game rule command",
+    "infoPauseNoPlayersJoin": "Detected a player connecting to the game; the day-night cycle has been enabled.",
+    "infoPauseNoPlayersDisconnect": "There are currently no players on the server; the day-night cycle has been disabled."
+}

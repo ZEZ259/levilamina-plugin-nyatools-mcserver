@@ -6,7 +6,7 @@
 #include "events/listeners/listeners.h"
 #include "hooks/Hooks.h"
 
-#include <cstddef>
+#include "ll/api/i18n/I18n.h"
 #include <ll/api/mod/NativeMod.h>
 #include "ll/api/event/ListenerBase.h"
 #include "ll/api/mod/RegisterHelper.h"
@@ -25,17 +25,13 @@
 
 #include "mc/world/level/Level.h"
 #include "mc\server\commands\MinecraftCommands.h"
-#include "mc\server\commands\CommandContext.h"
 #include "mc\server\commands\CommandOrigin.h"
-#include "mc/world/level/storage/GameRules.h"
-#include "mc/world/level/storage/GameRule.h"
 #include <mc/server/commands/CommandOrigin.h>
 #include <mc/server/commands/CommandOutput.h>
 #include <mc/world/actor/player/Player.h>
 #include <mc/world/actor/monster/PigZombie.h>
 #include <mc/world/actor/item/ItemActor.h>
 #include <mc/world/item/ItemStack.h>
-#include <string>
 
 
 namespace nya_tools
@@ -45,11 +41,30 @@ namespace nya_tools
     //初始化
     NyaTools& NyaTools::getInstance() 
     {
-    static NyaTools instance;
-    return instance;
+        static NyaTools instance;
+        return instance;
     }
-    bool NyaTools::load() {
-        getSelf().getLogger().debug("Loading...");
+
+    bool NyaTools::load() 
+    {
+        auto& logger = getSelf().getLogger();
+        logger.debug("Loading...");
+
+        const auto& configFilePath = getSelf().getConfigDir() / "config.json";
+        if (!ll::config::loadConfig(config, configFilePath)) {
+            logger.warn("Cannot load configurations from {}", configFilePath);
+            logger.info("Saving default configurations");
+
+            if (!ll::config::saveConfig(config, configFilePath)) {
+                logger.error("Cannot save default configurations to {}", configFilePath);
+            }
+        }
+
+        if (auto res = ll::i18n::getInstance().load(getSelf().getLangDir()); !res) {
+            getSelf().getLogger().error("i18n load failed");
+            res.error().log(getSelf().getLogger());
+        }
+
         return true;
     }
 
@@ -74,7 +89,6 @@ namespace nya_tools
         {
             throw std::runtime_error("failed to get command registry");
         }
-        
         //载入指令
         command::registerNyarules(config);  //设置模组规则
         command::registerMcrules(config);   //设置游戏规则
