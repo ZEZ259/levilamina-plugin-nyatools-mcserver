@@ -2,7 +2,7 @@
 - mc/FixPigmanCD.cpp
 */
 #include "mc.h"
-#include "../hooks/HookPortalSpawnPigman.h"
+#include "../hooks/Hooks.h"
 
 namespace nya_tools::mc
 {

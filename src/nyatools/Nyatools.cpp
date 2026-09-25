@@ -4,6 +4,7 @@
 #include "mc/mc.h"
 #include "nya/PauseNoPlayers.h"
 #include "events/listeners/listeners.h"
+#include "hooks/Hooks.h"
 
 #include <cstddef>
 #include <ll/api/mod/NativeMod.h>
@@ -60,6 +61,8 @@ namespace nya_tools
         //config.enableFixPigmanCD
         if(config.enableFixPigmanCD)
             nya_tools::mc::FixPigmanCD(true);
+        //config.actorGrowthMode
+        nya_tools::mc::ActorGrowth(true, (mc::ActorGrowthMode)config.actorGrowthMode);
     }
 
     //启用模组
@@ -78,6 +81,7 @@ namespace nya_tools
         applyConfig();
         //监视器
         nya_tools::events::listeners::registerListenerActorSpawn(true,config);
+        
         return true;
     }
 

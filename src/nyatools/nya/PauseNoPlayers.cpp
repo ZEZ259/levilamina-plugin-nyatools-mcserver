@@ -37,7 +37,7 @@ namespace nya_tools::funcs
         listenerPlayerDisconnect = eventBus.emplaceListener<ll::event::PlayerDisconnectEvent>([](ll::event::PlayerDisconnectEvent& event)
         { 
             //当服务器空闲时禁用昼夜更替
-            if(ll::service::bedrock::getLevel()->getPlayerList().size() == 0)
+            if(ll::service::bedrock::getLevel()->getPlayerList().size() == 1)
             {
                 ll::service::bedrock::getLevel()->getGameRules().mGameRules->at(1).mValue = false;
                 nya_tools::NyaTools::getInstance().getSelf().getLogger().info("当前服务器内没有玩家，已关闭昼夜更替。");
